@@ -1,0 +1,38 @@
+@baseUrl = http://localhost:5080
+
+### Create a fictional application (use returned id in requests below)
+POST {{baseUrl}}/api/applications
+Content-Type: application/json
+
+{
+  "company": "Example Software",
+  "role": "C# Backend Developer",
+  "appliedOn": "2020-01-01"
+}
+
+### Browse applications
+GET {{baseUrl}}/api/applications?page=1&pageSize=20
+
+### Move application 1 to Interviewing
+PATCH {{baseUrl}}/api/applications/1/status
+Content-Type: application/json
+
+{
+  "status": "Interviewing",
+  "expectedVersion": 1
+}
+
+### Stale version: expect 409
+PATCH {{baseUrl}}/api/applications/1/status
+Content-Type: application/json
+
+{
+  "status": "Offer",
+  "expectedVersion": 1
+}
+
+### Filter by status
+GET {{baseUrl}}/api/applications?status=Interviewing&page=1&pageSize=20
+
+### Health endpoint (process liveness only)
+GET {{baseUrl}}/health
