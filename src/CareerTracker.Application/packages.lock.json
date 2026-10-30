@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "careertracker.domain": {
+        "type": "Project"
+      }
+    }
+  }
+}
